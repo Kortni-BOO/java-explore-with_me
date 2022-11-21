@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.3">
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/dto/ViewStats.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/repository/StatisticRepository.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/mapper/StatMapper.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/controller/StatisticController.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/model/EndpointHit.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/StatisticApp.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/service/impl/StatisticServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/java/ru/practicum/statistic/service/StatisticService.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/target/generated-sources/annotations/ru/practicum/statistic/model/EndpointHit_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/statistic/src/main/resources/application.properties">
+</file>
+</checkstyle>

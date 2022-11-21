@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/java-explore-with_me.iml" filepath="$PROJECT_DIR$/.idea/java-explore-with_me.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistic/statistic.iml" filepath="$PROJECT_DIR$/statistic/statistic.iml" />
     </modules>
   </component>
 </project>

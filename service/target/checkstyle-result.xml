@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.3">
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/category/service/CategoryServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/user/service/UserServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/participationRequest/ParticipationRequestController.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/participationRequest/service/ParticipationRequestService.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/participationRequest/service/ParticipationRequestServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/events/EventsController.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/events/service/EventServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/events/service/EventService.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/events/EventsControllerAdmin.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/compilation/service/CompilationServiceImpl.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/src/main/java/ru/practucum/explore/client/BaseClient.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/category/model/Category_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/user/model/User_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/participationRequest/model/ParticipationRequest_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/events/model/Event_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/compilation/model/CompilationEvent_.java">
+</file>
+<file name="/Users/makbookair/Desktop/java-explore-with-me/service/target/generated-sources/annotations/ru/practucum/explore/compilation/model/Compilation_.java">
+</file>
+</checkstyle>
