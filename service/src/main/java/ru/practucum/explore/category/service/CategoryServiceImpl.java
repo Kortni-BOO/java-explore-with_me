@@ -1,5 +1,6 @@
 package ru.practucum.explore.category.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practucum.explore.category.dto.CategoryDto;
 import ru.practucum.explore.category.mapper.CategoryMapper;
 import ru.practucum.explore.category.model.Category;
@@ -23,17 +25,13 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
     private final CategoryMapper mapper;
 
-    @Autowired
-    public CategoryServiceImpl(CategoryRepository repository, CategoryMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
-
     @Override
+    @Transactional
     public CategoryDto updateCategory(CategoryDto categoryDto) {
         try {
             Category category = mapper.toCategory(getById(categoryDto.getId()));
@@ -51,6 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryDto createCategory(CategoryDto categoryDto) {
         try {
             Category category = repository.save(mapper.toCategory(categoryDto));
@@ -64,6 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(Integer categoryId) {
         getById(categoryId);
         repository.deleteById(categoryId);

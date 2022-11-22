@@ -20,7 +20,7 @@ public class StatisticController {
     //Сохранение информации о том, что на uri конкретного сервиса был отправлен запрос пользователем.
     // Название сервиса, uri и ip пользователя указаны в теле запроса.
     @PostMapping("/hit")
-    void create(@RequestBody EndpointHit endpointHit) {
+    public void create(@RequestBody EndpointHit endpointHit) {
         service.create(endpointHit);
     }
 

@@ -16,11 +16,12 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id; // — уникальный идентификатор пользователя;
+    @Column(name = "id", nullable = false)
+    private long id; // — уникальный идентификатор пользователя;
 
     @Column(name = "name")
-    String name; // — имя или логин пользователя;
+    private String name; // — имя или логин пользователя;
 
     @Column(name = "email")
-    String email; // — адрес электронной почты;
+    private String email; // — адрес электронной почты;
 }

@@ -1,9 +1,6 @@
 package ru.practucum.explore.compilation.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ru.practucum.explore.events.model.Event;
 
 import javax.persistence.*;
@@ -14,18 +11,19 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CompilationEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    Integer id;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     @ManyToOne()
     @JoinColumn(name = "event_id")
-    Event event;
+    private Event event;
 
     @ManyToOne()
     @JoinColumn(name = "compilation_id")
-    Compilation compilation;
+    private Compilation compilation;
 }

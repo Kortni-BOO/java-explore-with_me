@@ -5,38 +5,39 @@ import org.springframework.stereotype.Component;
 import ru.practucum.explore.compilation.dto.CompilationDto;
 import ru.practucum.explore.compilation.dto.NewCompilationDto;
 import ru.practucum.explore.compilation.model.Compilation;
-import ru.practucum.explore.events.mapper.EventMapper;
 
 @Component
 @RequiredArgsConstructor
 public class CompilationMapper {
-    EventMapper mapper;
 
     public CompilationDto toCompilationDto(Compilation compilation) {
-        return new CompilationDto(
-                compilation.getId(),
-                compilation.getEvents(),
-                compilation.getPinned(),
-                compilation.getTitle()
-        );
+        CompilationDto compilationDto = CompilationDto.builder()
+                .id(compilation.getId())
+                .events(compilation.getEvents())
+                .pinned(compilation.getPinned())
+                .title(compilation.getTitle())
+                .build();
+        return compilationDto;
     }
 
     public Compilation toCompilation(CompilationDto compilationDto) {
-        return new Compilation(
-                compilationDto.getId(),
-                compilationDto.getEvents(),
-                compilationDto.getPinned(),
-                compilationDto.getTitle()
-        );
+        Compilation compilation = Compilation.builder()
+                .id(compilationDto.getId())
+                .events(compilationDto.getEvents())
+                .pinned(compilationDto.getPinned())
+                .title(compilationDto.getTitle())
+                .build();
+
+                return compilation;
     }
 
     public Compilation toCompilationFromNew(NewCompilationDto compilationDto) {
-        return new Compilation(
-                0,
-                null,
-                compilationDto.getPinned(),
-                compilationDto.getTitle()
-        );
+        Compilation compilation = Compilation.builder()
+                .pinned(compilationDto.getPinned())
+                .title(compilationDto.getTitle())
+                .build();
+        
+        return compilation;
     }
 
 

@@ -14,9 +14,9 @@ public class NewUserRequest {
     @NonNull
     @NotBlank
     @Email
-    String email;
+    private String email;
 
     @NonNull
     @NotBlank
-    String name;
+    private String name;
 }

@@ -1,5 +1,6 @@
 package ru.practucum.explore.compilation;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.compilation.model.Compilation;
@@ -9,13 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/compilations")
+@RequiredArgsConstructor
 public class CompilationController {
     private final CompilationService compilationService;
-
-    @Autowired
-    public CompilationController(CompilationService compilationService) {
-        this.compilationService = compilationService;
-    }
 
     @GetMapping("/{compId}")
     public Compilation getById(@PathVariable Integer compId) {

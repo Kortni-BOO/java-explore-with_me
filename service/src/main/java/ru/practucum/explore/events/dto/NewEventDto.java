@@ -11,33 +11,34 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class NewEventDto {
-    long id;
+    private long id;
     @NonNull
     @NotBlank
-    String annotation; //Краткое описание
+    private String annotation; //Краткое описание
 
-    Integer category; //Категория
+    private Integer category; //Категория
 
     @NonNull
     @NotBlank
-    String description; //Полное описание события
+    private String description; //Полное описание события
 
     @NonNull
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime eventDate; //Дата и время на которые намечено событие
+    private LocalDateTime eventDate; //Дата и время на которые намечено событие
 
     //User initiator; //Пользователь (краткая информация) UserShortDto
 
-    Location location;
+    private Location location;
 
-    Boolean paid; //Нужно ли оплачивать участие
+    private Boolean paid; //Нужно ли оплачивать участие
 
-    Integer participantLimit = 0; //Ограничение на количество участников. Значение 0 - означает отсутствие ограничения
+    private Integer participantLimit = 0; //Ограничение на количество участников. Значение 0 - означает отсутствие ограничения
 
-    Boolean requestModeration; //Нужна ли пре-модерация заявок на участие
+    private Boolean requestModeration; //Нужна ли пре-модерация заявок на участие
 
     @NonNull
     @NotBlank
-    String title; //Заголовок
+    private String title; //Заголовок
 }

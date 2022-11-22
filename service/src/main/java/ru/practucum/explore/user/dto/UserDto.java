@@ -13,12 +13,12 @@ public class UserDto {
     @NonNull
     @NotBlank
     @Email
-    String email;
+    private String email;
 
-    long id;
+    private long id;
 
     @NonNull
     @NotBlank
-    String name;
+    private String name;
 
 }

@@ -1,6 +1,6 @@
 package ru.practucum.explore.events;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.events.dto.EventFullDto;
 import ru.practucum.explore.events.dto.EventShortDto;
@@ -13,13 +13,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class EventsControllerPrivate {
     private final EventService eventService;
-
-    @Autowired
-    public EventsControllerPrivate(EventService eventService) {
-        this.eventService = eventService;
-    }
 
     @GetMapping("/{userId}/events")
     //Получение событий, добавленных текущем пользователем

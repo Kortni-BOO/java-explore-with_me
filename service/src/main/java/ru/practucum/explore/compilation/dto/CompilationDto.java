@@ -10,15 +10,16 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CompilationDto {
-    Integer id;
+    private Integer id;
 
-    Set<Event> events; //Список событий входящих в подборку
+    private Set<Event> events; //Список событий входящих в подборку
 
     @NonNull
-    Boolean pinned; //Закреплена ли подборка на главной странице сайта
+    private Boolean pinned; //Закреплена ли подборка на главной странице сайта
 
     @NonNull
     @NotBlank
-    String title; //Заголовок подборки
+    private String title; //Заголовок подборки
 }

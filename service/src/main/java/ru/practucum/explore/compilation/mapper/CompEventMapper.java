@@ -4,11 +4,12 @@ import ru.practucum.explore.compilation.dto.CompilationEventDto;
 import ru.practucum.explore.compilation.model.CompilationEvent;
 
 public class CompEventMapper {
+
     public CompilationEvent toCompilationEvent(CompilationEventDto compilation) {
-        return new CompilationEvent(
-                null,
-                compilation.getEvent(),
-                compilation.getCompilation()
-        );
+        CompilationEvent compilationEvent = CompilationEvent.builder()
+                .event(compilation.getEvent())
+                .compilation(compilation.getCompilation())
+                .build();
+        return compilationEvent;
     }
 }

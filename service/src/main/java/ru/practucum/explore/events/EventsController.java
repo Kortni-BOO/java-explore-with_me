@@ -1,5 +1,6 @@
 package ru.practucum.explore.events;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -16,27 +17,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/events")
+@RequiredArgsConstructor
 public class EventsController {
     private final EventService eventService;
-    private final EventMapper eventMapper;
+    private final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private final Client client;
-
-    @Autowired
-    public EventsController(EventService eventService, EventMapper eventMapper, Client client) {
-        this.eventService = eventService;
-        this.eventMapper = eventMapper;
-        this.client = client;
-    }
-
 
     @GetMapping
     //Получение событий с возможностью фильтрации
     public List<EventFullDto> searchEvents(@RequestParam String text,
                                            @RequestParam(required = false) Collection<Integer> categories,
                                            @RequestParam(required = false) Boolean paid,
-                                           @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-                                           @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+                                           @RequestParam(required = false) @DateTimeFormat(pattern = DATE_PATTERN) LocalDateTime rangeStart,
+                                           @RequestParam(required = false) @DateTimeFormat(pattern = DATE_PATTERN) LocalDateTime rangeEnd,
                                            @RequestParam(required = false) Boolean onlyAvailable,
                                            @RequestParam(required = false) SortType sort,
                                            @RequestParam(defaultValue = "0") int from,

@@ -1,9 +1,7 @@
 package ru.practucum.explore.events.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import ru.practucum.explore.category.model.Category;
 import ru.practucum.explore.events.enums.State;
 import ru.practucum.explore.user.model.User;
@@ -17,55 +15,59 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name = "annotation", columnDefinition = "text")
-    String annotation; //Краткое описание
+    private String annotation; //Краткое описание
 
     @ManyToOne()
     @JoinColumn(name = "category_id")
-    Category category; //Категория
+    private Category category; //Категория
 
-    Integer confirmedRequests; //Количество одобренных заявок на участие в данном событии
+    private Integer confirmedRequests; //Количество одобренных заявок на участие в данном событии
 
     @Column(name = "created_at")
-    LocalDateTime createdOn; //Дата и время создания события (в формате "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdOn; //Дата и время создания события (в формате "yyyy-MM-dd HH:mm:ss")
 
     @Column(name = "description", columnDefinition = "text")
-    String description; //Полное описание события
+    private String description; //Полное описание события
 
     @Column(name = "event_date")
-    LocalDateTime eventDate; //Дата и время на которые намечено событие (в формате "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime eventDate; //Дата и время на которые намечено событие (в формате "yyyy-MM-dd HH:mm:ss")
 
     @ManyToOne()
     @JoinColumn(name = "initiator_id")
-    User initiator; //Пользователь (краткая информация) UserShortDto
+    private User initiator; //Пользователь (краткая информация) UserShortDto
 
-    Float lat;
-    Float lon;
+    private Float lat;
+    private Float lon;
 
     @Column(name = "paid")
-    Boolean paid; //Нужно ли оплачивать участие
+    private Boolean paid; //Нужно ли оплачивать участие
 
     @Column(name = "participant_limit")
-    Integer participantLimit; //Ограничение на количество участников. Значение 0 - означает отсутствие ограничения
+    private Integer participantLimit; //Ограничение на количество участников. Значение 0 - означает отсутствие ограничения
 
     @Column(name = "publishedOn")
-    LocalDateTime publishedOn; //Дата и время публикации события (в формате "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime publishedOn; //Дата и время публикации события (в формате "yyyy-MM-dd HH:mm:ss")
 
     @Column(name = "request_moderation")
-    Boolean requestModeration; //Нужна ли пре-модерация заявок на участие
+    private Boolean requestModeration; //Нужна ли пре-модерация заявок на участие
 
     @JoinColumn(name = "state")
     @Enumerated(EnumType.STRING)
-    State state; //Список состояний жизненного цикла события
+    private State state; //Список состояний жизненного цикла события
 
     @Column(name = "title")
-    String title; //Заголовок
+    private String title; //Заголовок
 
     @Column(name = "views")
-    Long views; //Количество просмотров события
+    private Long views; //Количество просмотров события
 }

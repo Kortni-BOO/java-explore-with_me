@@ -20,20 +20,21 @@ import java.time.LocalDateTime;
 public class ParticipationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    @Column(name = "id", nullable = false)
+    private long id;
 
     @Column(name = "created")
-    LocalDateTime created; //Дата и время создания заявки
+    private LocalDateTime created; //Дата и время создания заявки
 
     @ManyToOne()
     @JoinColumn(name = "event_id")
-    Event event; //Идентификатор события
+    private Event event; //Идентификатор события
 
     @ManyToOne()
     @JoinColumn(name = "requester_id")
-    User requester; //Идентификатор пользователя, отправившего заявку
+    private User requester; //Идентификатор пользователя, отправившего заявку
 
     @Enumerated(EnumType.STRING)
-    Status status;//Статус заявки
+    private Status status;//Статус заявки
 
 }

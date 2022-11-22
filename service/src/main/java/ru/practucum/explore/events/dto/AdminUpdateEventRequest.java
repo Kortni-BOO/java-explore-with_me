@@ -1,28 +1,26 @@
 package ru.practucum.explore.events.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class AdminUpdateEventRequest {
-    Long id;
-    String annotation;
-    Integer category;
-    String description;
+    private Long id;
+    private String annotation;
+    private Integer category;
+    private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime eventDate;
-    Location location;
-    Boolean paid;
-    Integer participantLimit;
-    Boolean requestModeration;
-    String title;
+    private LocalDateTime eventDate;
+    private Location location;
+    private Boolean paid;
+    private Integer participantLimit;
+    private Boolean requestModeration;
+    private String title;
 
 
     @Getter

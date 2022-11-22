@@ -1,10 +1,11 @@
 package ru.practucum.explore.compilation.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practucum.explore.compilation.dto.NewCompilationDto;
 import ru.practucum.explore.compilation.mapper.CompilationMapper;
 import ru.practucum.explore.compilation.model.Compilation;
@@ -25,27 +26,11 @@ import java.util.stream.Collectors;
  * Service для работы с подборками событий
  */
 @Service
+@RequiredArgsConstructor
 public class CompilationServiceImpl implements CompilationService {
     private final CompilationRepository repository;
     private final CompilationEventRepository compRepository;
     private final EventService eventService;
-    private final CompilationMapper mapper;
-    private final EventMapper eventMapper;
-
-    @Autowired
-    public CompilationServiceImpl(CompilationRepository repository,
-                                  EventService eventService,
-                                  CompilationMapper mapper,
-                                  CompilationEventRepository compRepository,
-                                  EventMapper eventMapper) {
-        this.repository = repository;
-        this.eventService = eventService;
-        this.mapper = mapper;
-        this.compRepository = compRepository;
-        this.eventMapper = eventMapper;
-    }
-
-    //
 
     /**
      * Public: Подборки событий
@@ -72,6 +57,7 @@ public class CompilationServiceImpl implements CompilationService {
      */
     //Добавление новой подборки.
     @Override
+    @Transactional
     public Compilation createCompilation(NewCompilationDto newCompilation) {
         Set<Event> events = newCompilation.getEvents().stream().map(eventService::getById).collect(Collectors.toSet());
         Compilation compilation = new Compilation(
@@ -82,6 +68,7 @@ public class CompilationServiceImpl implements CompilationService {
 
     //Удаление подборки.
     @Override
+    @Transactional
     public void deleteCompilation(Integer compId) {
         //getById(compId);
         repository.deleteById(compId);
@@ -89,10 +76,10 @@ public class CompilationServiceImpl implements CompilationService {
 
     //Удалить событие из подборки.
     @Override
+    @Transactional
     public void deleteEventCompilation(Integer compId, long eventId) {
         Compilation compilation = getById(compId);
         Event event = eventService.getById(eventId);
-        System.out.println(compilation);
         CompilationEvent compilationEvent = compRepository.findByEventIdAndCompilationId(eventId, compId)
                 .orElseThrow(() -> new UserNotFoundException(String.format("В подборке с id = %d не найдено событие с id = %d", compId, eventId)));
         compRepository.deleteById(compilationEvent.getId());
@@ -103,6 +90,7 @@ public class CompilationServiceImpl implements CompilationService {
 
     //Добавить событие в подборку.
     @Override
+    @Transactional
     public void addEventCompilation(Integer compId, long eventId) {
         Compilation compilation = getById(compId);
         Event event = eventService.getById(eventId);
@@ -113,11 +101,11 @@ public class CompilationServiceImpl implements CompilationService {
                 repository.findById(compId)
                         .orElseThrow(() -> new UserNotFoundException(String.format("подборка с id = %d не найден", compId))));
         compRepository.save(compilationEvent);
-        //repository.save(compilation);
     }
 
     //Открепить подборку на главной странице.
     @Override
+    @Transactional
     public void unpinCompilation(Integer compId) {
         Compilation compilation = getById(compId);
         compilation.setPinned(false);
@@ -126,6 +114,7 @@ public class CompilationServiceImpl implements CompilationService {
 
     //Закрепить подборку на главной странице.
     @Override
+    @Transactional
     public void pinCompilation(Integer compId) {
         Compilation compilation = getById(compId);
         compilation.setPinned(true);

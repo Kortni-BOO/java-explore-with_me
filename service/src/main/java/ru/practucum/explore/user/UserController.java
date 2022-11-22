@@ -1,6 +1,6 @@
 package ru.practucum.explore.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.user.dto.UserDto;
 import ru.practucum.explore.user.service.UserService;
@@ -12,13 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/admin/users")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     //получение информации о пользователях
     @GetMapping

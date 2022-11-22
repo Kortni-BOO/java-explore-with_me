@@ -9,9 +9,9 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserShortDto {
-    long id;
+    private long id;
 
     @NonNull
     @NotBlank
-    String name;
+    private String name;
 }

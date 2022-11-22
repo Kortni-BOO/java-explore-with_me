@@ -9,23 +9,14 @@ import ru.practucum.explore.user.model.User;
 @Component
 public class ParticipationRequestMapper {
     public ParticipationRequestDto toRequestDto(ParticipationRequest request) {
-        return new ParticipationRequestDto(
-                request.getId(),
-                request.getRequester().getId(),
-                request.getEvent().getId(),
-                request.getStatus(),
-                request.getCreated()
-        );
+        ParticipationRequestDto dto = ParticipationRequestDto.builder()
+                .id(request.getId())
+                .requester(request.getRequester().getId())
+                .event(request.getEvent().getId())
+                .status(request.getStatus())
+                .created(request.getCreated())
+                .build();
+        return dto;
     }
 
-    public ParticipationRequest roRequest(ParticipationRequestDto requestDto) {
-        return new ParticipationRequest(
-                requestDto.getId(),
-                requestDto.getCreated(),
-                new Event(requestDto.getEvent(), null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null),
-                new User(requestDto.getRequester(), null, null),
-                requestDto.getStatus()
-        );
-    }
 }

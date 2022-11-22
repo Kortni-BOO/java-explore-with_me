@@ -1,6 +1,7 @@
 package ru.practucum.explore.category;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.category.dto.CategoryDto;
@@ -10,13 +11,9 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/admin/categories")
+@RequiredArgsConstructor
 public class CategoryControllerAdmin {
     private final CategoryService categoryService;
-
-    @Autowired
-    public CategoryControllerAdmin(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
 
     @PatchMapping
     //изменение категории

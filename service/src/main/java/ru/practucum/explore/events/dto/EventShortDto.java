@@ -12,33 +12,34 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class EventShortDto {
-    long id;
+    private long id;
 
-    String description;
+    private String description;
 
     @NonNull
     @NotBlank
-    String annotation; //Краткое описание
+    private String annotation; //Краткое описание
 
     @NonNull
-    Category category; //Категория
+    private Category category; //Категория
 
-    Integer confirmedRequests; //Количество одобренных заявок на участие в данном событии
+    private Integer confirmedRequests; //Количество одобренных заявок на участие в данном событии
 
     @NonNull
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime eventDate; //Дата и время на которые намечено событие
+    private LocalDateTime eventDate; //Дата и время на которые намечено событие
 
     @NonNull
-    User initiator; //Пользователь (краткая информация) UserShortDto
+    private User initiator; //Пользователь (краткая информация) UserShortDto
 
     @NonNull
-    Boolean paid; //Нужно ли оплачивать участие
+    private Boolean paid; //Нужно ли оплачивать участие
 
     @NonNull
     @NotBlank
-    String title; //Заголовок
+    private String title; //Заголовок
 
-    long views; //Количество просмотров события
+    private long views; //Количество просмотров события
 }

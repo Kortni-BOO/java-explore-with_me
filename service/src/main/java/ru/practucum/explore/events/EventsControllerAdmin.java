@@ -1,6 +1,7 @@
 package ru.practucum.explore.events;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +18,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/events")
+@RequiredArgsConstructor
 public class EventsControllerAdmin {
     private final EventService eventService;
-    private final EventMapper eventMapper;
-
-    @Autowired
-    public EventsControllerAdmin(EventService eventService, EventMapper eventMapper) {
-        this.eventService = eventService;
-        this.eventMapper = eventMapper;
-    }
+    private final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     @GetMapping
     //Поиск событий
     public List<EventFullDto> adminSearchEventsFilter(@RequestParam(required = false) Collection<Long> users,
                                                       @RequestParam(required = false) Collection<State> states,
                                                       @RequestParam(required = false) Collection<Integer> categories,
-                                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-                                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+                                                      @RequestParam(required = false) @DateTimeFormat(pattern = DATE_PATTERN) LocalDateTime rangeStart,
+                                                      @RequestParam(required = false) @DateTimeFormat(pattern = DATE_PATTERN) LocalDateTime rangeEnd,
                                                       @RequestParam(defaultValue = "0") int from,
                                                       @RequestParam(defaultValue = "10") int size) {
 

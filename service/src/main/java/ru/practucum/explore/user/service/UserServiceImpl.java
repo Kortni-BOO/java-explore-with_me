@@ -1,12 +1,13 @@
 package ru.practucum.explore.user.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practucum.explore.exception.ConflictException;
 import ru.practucum.explore.exception.UserNotFoundException;
 import ru.practucum.explore.user.dto.UserDto;
@@ -24,15 +25,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
     //Поиск пользователя id
     @Override
@@ -56,6 +52,7 @@ public class UserServiceImpl implements UserService {
 
     //Добавление нового пользователя
     @Override
+    @Transactional
     public UserDto createUser(UserDto userDto) {
         try {
             User user = userRepository.save(userMapper.toUser(userDto));
@@ -72,6 +69,7 @@ public class UserServiceImpl implements UserService {
 
     //Удаление пользователя
     @Override
+    @Transactional
     public void deleteUser(long id) {
         getById(id);
         userRepository.deleteById(id);

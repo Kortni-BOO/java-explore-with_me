@@ -18,18 +18,19 @@ import java.time.LocalDateTime;
 public class EndpointHit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    @Column(name = "id", nullable = false)
+    private long id;
 
     @Column
-    String app;
+    private String app;
 
     @Column
-    String uri;
+    private String uri;
 
     @Column
-    String ip;
+    private String ip;
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime timestamp;
+    private LocalDateTime timestamp;
 }

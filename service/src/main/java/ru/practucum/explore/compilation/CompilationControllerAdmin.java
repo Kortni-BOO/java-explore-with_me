@@ -1,5 +1,6 @@
 package ru.practucum.explore.compilation;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.compilation.dto.NewCompilationDto;
@@ -10,13 +11,9 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/admin/compilations")
+@RequiredArgsConstructor
 public class CompilationControllerAdmin {
     private final CompilationService compilationService;
-
-    @Autowired
-    public CompilationControllerAdmin(CompilationService compilationService) {
-        this.compilationService = compilationService;
-    }
 
     @PostMapping
     //Добавление новой подборки.

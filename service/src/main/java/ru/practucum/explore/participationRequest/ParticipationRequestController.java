@@ -1,5 +1,6 @@
 package ru.practucum.explore.participationRequest;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.practucum.explore.participationRequest.dto.ParticipationRequestDto;
@@ -11,14 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/users")
+@RequiredArgsConstructor
 public class ParticipationRequestController {
 
     private final ParticipationRequestService requestService;
-
-    @Autowired
-    public ParticipationRequestController(ParticipationRequestService requestService) {
-        this.requestService = requestService;
-    }
 
     @GetMapping("/{userId}/requests")
     //Получение информации о заявках текущего пользователя на участие в чужих событиях

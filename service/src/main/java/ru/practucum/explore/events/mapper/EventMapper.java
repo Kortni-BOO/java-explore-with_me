@@ -10,142 +10,93 @@ import ru.practucum.explore.user.dto.UserShortDto;
 @Component
 public class EventMapper {
     public Event toEventFromFull(EventFullDto eventFullDto) {
-        return new Event(
-                eventFullDto.getId(),
-                eventFullDto.getAnnotation(),
-                eventFullDto.getCategory(),
-                eventFullDto.getConfirmedRequests(),
-                eventFullDto.getCreatedOn(),
-                eventFullDto.getDescription(),
-                eventFullDto.getEventDate(),
-                null,
-                eventFullDto.getLocation().getLat(),
-                eventFullDto.getLocation().getLon(),
-                eventFullDto.getPaid(),
-                eventFullDto.getParticipantLimit(),
-                eventFullDto.getPublishedOn(),
-                eventFullDto.getRequestModeration(),
-                eventFullDto.getState(),
-                eventFullDto.getTitle(),
-                eventFullDto.getViews()
-        );
+        Event event = Event.builder()
+                .id(eventFullDto.getId())
+                .annotation(eventFullDto.getAnnotation())
+                .category(eventFullDto.getCategory())
+                .confirmedRequests(eventFullDto.getConfirmedRequests())
+                .createdOn(eventFullDto.getCreatedOn())
+                .description(eventFullDto.getDescription())
+                .lat(eventFullDto.getLocation().getLat())
+                .lon(eventFullDto.getLocation().getLon())
+                .paid(eventFullDto.getPaid())
+                .participantLimit(eventFullDto.getParticipantLimit())
+                .publishedOn(eventFullDto.getPublishedOn())
+                .requestModeration(eventFullDto.getRequestModeration())
+                .state(eventFullDto.getState())
+                .title(eventFullDto.getTitle())
+                .views(eventFullDto.getViews())
+                .build();
+        return event;
     }
 
     public Event toEventFromShort(EventShortDto eventShortDto) {
-        return new Event(
-                eventShortDto.getId(),
-                eventShortDto.getAnnotation(),
-                eventShortDto.getCategory(),
-                eventShortDto.getConfirmedRequests(),
-                null,
-                eventShortDto.getDescription(),
-                eventShortDto.getEventDate(),
-                eventShortDto.getInitiator(),
-                0f,
-                0f,
-                eventShortDto.getPaid(),
-                0,
-                null,
-                null,
-                null,
-                eventShortDto.getTitle(),
-                eventShortDto.getViews()
-        );
+        Event event = Event.builder()
+                .id(eventShortDto.getId())
+                .annotation(eventShortDto.getAnnotation())
+                .category(eventShortDto.getCategory())
+                .confirmedRequests(eventShortDto.getConfirmedRequests())
+                .description(eventShortDto.getDescription())
+                .paid(eventShortDto.getPaid())
+                .title(eventShortDto.getTitle())
+                .views(eventShortDto.getViews())
+                .build();
+        return event;
     }
 
     public EventFullDto toEventFullDto(Event event) {
-        return new EventFullDto(
-                event.getAnnotation(),
-                new Category(event.getCategory().getId(), event.getCategory().getName()),
-                event.getConfirmedRequests(),
-                event.getCreatedOn(),
-                event.getDescription(),
-                event.getEventDate(),
-                event.getId(),
-                new UserShortDto(event.getInitiator().getId(), event.getInitiator().getName()),
-                new Location(event.getLat(), event.getLon()),
-                event.getPaid(),
-                event.getParticipantLimit(),
-                event.getPublishedOn(),
-                event.getRequestModeration(),
-                event.getState(),
-                event.getTitle(),
-                event.getViews()
-        );
+        EventFullDto eventFullDto = EventFullDto.builder()
+                .annotation(event.getAnnotation())
+                .category(new Category(event.getCategory().getId(), event.getCategory().getName()))
+                .confirmedRequests(event.getConfirmedRequests())
+                .createdOn(event.getCreatedOn())
+                .description(event.getDescription())
+                .eventDate(event.getEventDate())
+                .id(event.getId())
+                .initiator(new UserShortDto(event.getInitiator().getId(), event.getInitiator().getName()))
+                .location(new Location(event.getLat(), event.getLon()))
+                .paid(event.getPaid())
+                .participantLimit(event.getParticipantLimit())
+                .publishedOn(event.getPublishedOn())
+                .requestModeration(event.getRequestModeration())
+                .state(event.getState())
+                .title(event.getTitle())
+                .views(event.getViews())
+                .build();
+        return eventFullDto;
     }
 
     public EventShortDto toEventShortDto(Event event) {
-        return new EventShortDto(
-                event.getId(),
-                event.getDescription(),
-                event.getAnnotation(),
-                event.getCategory(),
-                event.getConfirmedRequests(),
-                event.getEventDate(),
-                event.getInitiator(),
-                event.getPaid(),
-                event.getTitle(),
-                event.getViews()
-        );
-    }
-
-    public UpdateEventRequest toUpdateEventReq(Event event) {
-        return new UpdateEventRequest(
-                event.getId(),
-                event.getAnnotation(),
-                event.getCategory().getId(),
-                event.getDescription(),
-                event.getEventDate(),
-                event.getId(),
-                event.getPaid(),
-                event.getParticipantLimit(),
-                event.getTitle()
-        );
+        EventShortDto eventShortDto = EventShortDto.builder()
+                .id(event.getId())
+                .description(event.getDescription())
+                .annotation(event.getAnnotation())
+                .category(event.getCategory())
+                .confirmedRequests(event.getConfirmedRequests())
+                .eventDate(event.getEventDate())
+                .initiator(event.getInitiator())
+                .paid(event.getPaid())
+                .title(event.getTitle())
+                .views(event.getViews())
+                .build();
+        return eventShortDto;
     }
 
     public Event fromNewEventDto(NewEventDto dto) {
-        return new Event(
-                dto.getId(),
-                dto.getAnnotation(),
-                new Category(dto.getCategory(),""),
-                null,
-                null,
-                dto.getDescription(),
-                dto.getEventDate(),
-                null,
-                dto.getLocation().getLat(),
-                dto.getLocation().getLon(),
-                dto.getPaid(),
-                dto.getParticipantLimit(),
-                null,
-                dto.getRequestModeration(),
-                null,
-                dto.getTitle(),
-                null
-                );
+        Event event = Event.builder()
+                .id(dto.getId())
+                .annotation(dto.getAnnotation())
+                .category(new Category(dto.getCategory(),""))
+                .description(dto.getDescription())
+                .eventDate(dto.getEventDate())
+                .lat(dto.getLocation().getLat())
+                .lon(dto.getLocation().getLon())
+                .paid(dto.getPaid())
+                .participantLimit(dto.getParticipantLimit())
+                .requestModeration(dto.getRequestModeration())
+                .title(dto.getTitle())
+                .build();
+        return event;
 
-    }
-
-    public Event toEventForAdminUpdate(AdminUpdateEventRequest eventRequest) {
-        return new Event(
-                eventRequest.getId(),
-                eventRequest.getAnnotation(),
-                new Category(eventRequest.getCategory(), ""),
-                null,
-                null,
-                eventRequest.getDescription(),
-                eventRequest.getEventDate(),
-                null,
-                eventRequest.getLocation().getLat(),
-                eventRequest.getLocation().getLon(),
-                eventRequest.getPaid(),
-                eventRequest.getParticipantLimit(),
-                null,
-                eventRequest.getRequestModeration(),
-                null,
-                eventRequest.getTitle(),
-                null
-
-        );
     }
 }

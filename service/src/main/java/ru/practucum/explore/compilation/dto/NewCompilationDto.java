@@ -9,14 +9,15 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class NewCompilationDto {
 
 
-    List<Long> events; //Список событий входящих в подборку
+    private List<Long> events; //Список событий входящих в подборку
 
-    Boolean pinned; //Закреплена ли подборка на главной странице сайта
+    private Boolean pinned; //Закреплена ли подборка на главной странице сайта
 
     @NonNull
     @NotBlank
-    String title; //Заголовок подборки
+    private String title; //Заголовок подборки
 }

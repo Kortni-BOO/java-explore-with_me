@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    Integer id; //Идентификатор категории
+    @Column(name = "id", nullable = false)
+    private Integer id; //Идентификатор категории
 
     @Column(name = "name")
-    String name; //Название категории
+    private String name; //Название категории
 }

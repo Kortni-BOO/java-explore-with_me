@@ -1,9 +1,6 @@
 package ru.practucum.explore.compilation.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ru.practucum.explore.compilation.model.Compilation;
 import ru.practucum.explore.events.model.Event;
 
@@ -12,7 +9,8 @@ import ru.practucum.explore.events.model.Event;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CompilationEventDto {
-    Event event;
-    Compilation compilation;
+    private Event event;
+    private Compilation compilation;
 }

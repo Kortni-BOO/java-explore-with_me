@@ -1,7 +1,8 @@
 package ru.practucum.explore.participationRequest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practucum.explore.events.enums.State;
 import ru.practucum.explore.events.model.Event;
 import ru.practucum.explore.events.service.EventService;
@@ -25,26 +26,13 @@ import java.util.stream.Collectors;
  * пользователя на участие в событиях
  */
 @Service
+@RequiredArgsConstructor
 public class ParticipationRequestServiceImpl implements ParticipationRequestService {
     private final ParticipationRequestRepository repository;
     private final ParticipationRequestMapper mapper;
     private final UserService userService;
     private final EventService eventService;
     private final UserMapper userMapper;
-
-
-    @Autowired
-    public ParticipationRequestServiceImpl(ParticipationRequestRepository repository,
-                                           ParticipationRequestMapper mapper,
-                                           UserService userService,
-                                           EventService eventService,
-                                           UserMapper userMapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.userService = userService;
-        this.eventService = eventService;
-        this.userMapper = userMapper;
-    }
 
     //получение заявки по id
     public ParticipationRequest getById(long reqId) {
@@ -66,6 +54,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
 
     //Добавление запроса от текущего пользователя на участие в событии
     @Override
+    @Transactional
     public ParticipationRequestDto createRequest(long userId, long eventId) {
         User user = userMapper.toUser(userService.getById(userId));
         Event event = eventService.getById(eventId);
@@ -97,6 +86,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
 
     //Отмена своего запроса на участие в событии
     @Override
+    @Transactional
     public ParticipationRequestDto cancelRequest(long userId, long requestId) {
         ParticipationRequest request = getById(requestId);
 
@@ -122,6 +112,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
 
     //Подтверждение чужой заявки на участие в событии текущего пользователя
     @Override
+    @Transactional
     public ParticipationRequestDto confirmRequest(long userId, long eventId, long reqId) {
         ParticipationRequest request = getById(reqId);
         Event event = eventService.getById(eventId);
@@ -149,6 +140,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
 
     //Отклонение чужой заявки на участие в событиях текущего пользователя
     @Override
+    @Transactional
     public ParticipationRequestDto rejectRequest(long userId, long eventId, long reqId) {
         ParticipationRequest request = getById(reqId);
         request.setStatus(Status.REJECTED);
